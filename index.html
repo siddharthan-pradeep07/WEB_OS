@@ -13,7 +13,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 70px;
-  height: 400px;
+  height: 450px;
   background: #ffffff;
   border: 2px solid #000000;
   border-radius: 16px;
@@ -67,15 +67,37 @@
 <body>
 
   <div class="taskbar">
-    <button>📁</button>
-    <button>🪐</button>
-    <button>☢️</button>
-    <button>🎮</button>
-    <button>🎨</button>
-    <button>🎵</button>
-    <button>⚙️</button>
-
+    <button onclick="openWindow('Files', '📁')">📁</button>
+    <button onclick="openWindow('Space', '🪐')">🪐</button>
+    <button onclick="openWindow('Nuclear', '☢️')">☢️</button>
+    <button onclick="openWindow('Games', '🎮')">🎮</button>
+    <button onclick="openWindow('Paint', '🎨')">🎨</button>
+    <button onclick="openWindow('Music', '🎵')">🎵</button>
+    <button onclick="openWindow('Settings', '⚙️')">⚙️</button>
   </div>
+
+  <div class="window" id="popup">
+  <div class="window-titlebar">
+  <span class="window-title" id="popup-title">Window</span>
+  <button class="window-close" onclick="closeWindow()">❌</button>
+  </div>
+     
+     <div class="window-content" id="popup-content"></div>
+  </div>
+
+  <script>
+    function openWindow(name, icon) 
+    {
+      document.getElementById('popup-title').textContent = icon + ' ' + name;
+      document.getElementById('popup-content').textContent = name + ' test 123';
+      document.getElementById('popup').classList.add('open');
+    }
+
+    function closeWindow() 
+    {
+      document.getElementById('popup').classList.remove('open');
+    }
+  </script>
 
 </body>
 </html>
