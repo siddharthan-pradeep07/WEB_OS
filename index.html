@@ -1,8 +1,27 @@
-<HTML>
-<HEAD>
-<TITLE>WEB OS</TITLE>
-</HEAD>
+<!DOCTYPE html>
+<html>
+<head>
+<title>WEB OS</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a2e; min-height: 100vh; font-family: sans-serif; }
+
+  .taskbar-like-linux {
+    position: fixed;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 300px;
+    background: #111;
+    border-radius: 16px;
+    z-index: 1000;
+  }
+</style>
+</head>
 <body>
-    <h1>Sample test for web os </h1>
+
+  <div class="taskbar-like-linux"></div>
+
 </body>
-</HTML>
+</html>
