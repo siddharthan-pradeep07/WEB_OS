@@ -41,6 +41,27 @@
   background: #e0e0e0;
 }
 
+.window
+{
+    display: none;
+    position: fixed;
+    left: 50%;      
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 24px;
+    z-index: 2000;
+    flex-direction: column;
+}
+
+.window.open 
+{
+    display: flex;
+}
+
 </style>
 </head>
 <body>
