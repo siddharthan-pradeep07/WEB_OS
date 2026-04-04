@@ -105,6 +105,9 @@
     border-bottom: 2px solid #000000;
   }
 
+  .window-subtract { color: red; font-size: 16px;}
+  .window-close { color: red; font-size: 16px;}
+
 </style>
 </head>
 <body>
@@ -119,13 +122,14 @@
     <button onclick="openWindow('Settings', '⚙️', 'Settings')">⚙️</button>
   </div>
 
-  <div class="window" id="popup">
-  <div class="window-titlebar">
+<div class="window" id="popup">
+<div class="window-titlebar">
   <span class="window-title" id="popup-title">Window</span>
-  <div style="display:flex; gap:4px;"></div>
-  <button class="window-subtract" onclick="subtractWindow()">➖</button>
-  <button class="window-close" onclick="closeWindow()">❌</button>
+  <div style="display:flex; gap:4px; align-items:center;">
+    <button class="window-subtract" onclick="subtractWindow()">—</button>
+    <button class="window-close" onclick="closeWindow()">✕</button>
   </div>
+</div>
      
      <div class="window-content" id="popup-content"></div>
   </div>
