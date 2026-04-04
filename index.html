@@ -66,8 +66,21 @@
  {
     width: 24px;
     height: 24px;
-    background: #000000;
-    color: white;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .window-subtract 
+ {
+    width: 24px;
+    height: 24px;
+    background: transparent;
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -95,20 +108,21 @@
 </style>
 </head>
 <body>
-
+   <CENTER><P>WEB OS</P></CENTER>
   <div class="taskbar">
-    <button onclick="openWindow('Files', '📁')">📁</button>
-    <button onclick="openWindow('Explorer', '🪐')">🪐</button>
-    <button onclick="openWindow('Nuclear', '☢️')">☢️</button>
-    <button onclick="openWindow('Games', '🎮')">🎮</button>
-    <button onclick="openWindow('Paint', '🎨')">🎨</button>
-    <button onclick="openWindow('Music', '🎵')">🎵</button>
-    <button onclick="openWindow('Settings', '⚙️')">⚙️</button>
+    <button onclick="openWindow('Files', '📁', 'A quick brown fox jumps over a lazy dog')">📁</button>
+    <button onclick="openWindow('Explorer', '🪐', 'search what you want')">🪐</button>
+    <button onclick="openWindow('Nuclear', '☢️', 'Nuclear IDE program here')">☢️</button>
+    <button onclick="openWindow('Games', '🎮', 'play games here')">🎮</button>
+    <button onclick="openWindow('Paint', '🎨', 'Paint here')">🎨</button>
+    <button onclick="openWindow('Music', '🎵', 'listn to music here')">🎵</button>
+    <button onclick="openWindow('Settings', '⚙️', 'Settings')">⚙️</button>
   </div>
 
   <div class="window" id="popup">
   <div class="window-titlebar">
   <span class="window-title" id="popup-title">Window</span>
+  <button class="window-subtract" onclick="subtractWindow()">➖</button>
   <button class="window-close" onclick="closeWindow()">❌</button>
   </div>
      
@@ -116,14 +130,19 @@
   </div>
 
   <script>
-    function openWindow(name, icon) 
+    function openWindow(name, icon, content) 
     {
       document.getElementById('popup-title').textContent = icon + ' ' + name;
-      document.getElementById('popup-content').textContent = name + ' test 123';
+      document.getElementById('popup-content').textContent = content;
       document.getElementById('popup').classList.add('open');
     }
 
     function closeWindow() 
+    {
+      document.getElementById('popup').classList.remove('open');
+    }
+
+    function subtractWindow() 
     {
       document.getElementById('popup').classList.remove('open');
     }
