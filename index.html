@@ -161,28 +161,41 @@
   </div>
 
   <script>
+    let minimized = {};
+
     function openWindow(name, icon, content) 
-    {
-      document.getElementById('popup-title').textContent = icon + ' ' + name;
+     {
+       document.getElementById('popup-title').textContent = icon + ' ' + name;
 
-      if (name === 'Nuclear IDE') 
-       {
-        document.getElementById('popup-content').innerHTML = '<textarea style="width:100%; height:100%: border:2px solid #000000; border-radius: 5px; outline: none; resize: none; font-family: monospace; font-size: 14px;"></textarea>';  
-       }
-        else
-         {      
-          document.getElementById('popup-content').textContent = content;
-         }
+       if (minimized[name]) 
+        {
+           document.getElementById('popup').classList.add('open');
+           minimized[name] = false;
+           return;
+        } 
 
-       document.getElementById('popup').classList.add('open'); 
-    }
+    if (name === 'Nuclear IDE') 
+     {
+       document.getElementById('popup-content').innerHTML = '<textarea style="width:100%; height:100%; border:2px solid #000000; border-radius:5px; outline:none; resize:none; font-family:monospace; font-size:14px;"></textarea>';  
+     }
+     
+     else 
+     {      
+      document.getElementById('popup-content').textContent = content;
+     }
+
+  document.getElementById('popup').classList.add('open'); 
+}
+
+function subtractWindow() 
+{
+  const title = document.getElementById('popup-title').textContent;
+  const name = title.split(' ').slice(1).join(' ');
+  minimized[name] = true;
+  document.getElementById('popup').classList.remove('open');
+}
 
     function closeWindow() 
-    {
-      document.getElementById('popup').classList.remove('open');
-    }
-
-    function subtractWindow() 
     {
       document.getElementById('popup').classList.remove('open');
     }
