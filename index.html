@@ -135,8 +135,8 @@
 </style>
 </head>
 <body>
-   <CENTER><P><b>WEB OS</b></P></CENTER>
-   <CENTER><p id="currentTime"></p></CENTER>
+   <CENTER style="position:relative; z-index:1;"><P><b>WEB OS</b></P></CENTER>
+   <CENTER style="position:relative; z-index:1;"><p id="currentTime"></p></CENTER>
    <!--         <script src="script.js"></script>               -->
   <div class="taskbar">
     <button onclick="openWindow('Files', '📁', 'A quick brown fox jumps over a lazy dog')">📁</button>
@@ -165,7 +165,7 @@
     {
       document.getElementById('popup-title').textContent = icon + ' ' + name;
 
-      if (name === 'Nuclear') 
+      if (name === 'Nuclear IDE') 
        {
         document.getElementById('popup-content').innerHTML = '<textarea style="width:100%; height:100%: border:2px solid #000000; border-radius: 5px; outline: none; resize: none; font-family: monospace; font-size: 14px;"></textarea>';  
        }
