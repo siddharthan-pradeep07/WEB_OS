@@ -161,56 +161,73 @@
   </div>
 
   <script>
-    let minimized = {};
+    let windows = {};
+let currentApp = null;
 
-    function openWindow(name, icon, content) 
-     {
-       document.getElementById('popup-title').textContent = icon + ' ' + name;
-
-       if (minimized[name]) 
-        {
-           document.getElementById('popup').classList.add('open');
-           minimized[name] = false;
-           return;
-        } 
-
-    if (name === 'Nuclear IDE') 
-     {
-       document.getElementById('popup-content').innerHTML = '<textarea style="width:100%; height:100%; border:2px solid #000000; border-radius:5px; outline:none; resize:none; font-family:monospace; font-size:14px;"></textarea>';  
-     }
-     
-     else 
-     {      
-      document.getElementById('popup-content').textContent = content;
-     }
-
-  document.getElementById('popup').classList.add('open'); 
-}
-
-function subtractWindow() 
+function openWindow(name, icon, content)
 {
-  const title = document.getElementById('popup-title').textContent;
-  const name = title.split(' ').slice(1).join(' ');
-  minimized[name] = true;
-  document.getElementById('popup').classList.remove('open');
+  if (currentApp === 'Nuclear IDE')
+  {
+    const ta = document.querySelector('#popup-content textarea'); // Took reference from a html forum for this part [this line and the next line]
+    if (ta) windows['Nuclear IDE'] = '<textarea style="width:100%; height:100%; border:2px solid #000000; border-radius:5px; outline:none; resize:none; font-family:monospace; font-size:14px;">' + ta.value + '</textarea>';
+  }
+
+  
+  if (currentApp && currentApp !== name)
+   {
+     document.getElementById('popup').classList.remove('open');
+   }
+
+  currentApp = name;
+
+  if (!windows[name])
+  {
+    if (name === 'Nuclear IDE')
+     {
+       windows[name] = '<textarea style="width:100%; height:100%; border:2px solid #000000; border-radius:5px; outline:none; resize:none; font-family:monospace; font-size:14px;"></textarea>';
+     }
+    else
+     {
+       windows[name] = content;
+     }
+  }
+
+  document.getElementById('popup-title').textContent = icon + ' ' + name;
+
+  if (name === 'Nuclear IDE')
+   {
+     document.getElementById('popup-content').innerHTML = windows[name];
+   }
+  else
+   {
+     document.getElementById('popup-content').textContent = windows[name];
+   }
+
+   document.getElementById('popup').classList.add('open');
 }
 
-    function closeWindow() 
-    {
-      document.getElementById('popup').classList.remove('open');
-    }
+function subtractWindow()
+  {
+    document.getElementById('popup').classList.remove('open');
+  }
 
-    function updateTime() 
-    {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('currentTime').textContent = `${hours}:${minutes}:${seconds}`;
-    }
+function closeWindow()
+  {
+    if (currentApp) delete windows[currentApp];
+    currentApp = null;
+    document.getElementById('popup').classList.remove('open');
+  }
+function updateTime() 
+  { 
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('currentTime').textContent = `${hours}:${minutes}:${seconds}`;
+ }
      updateTime();
      setInterval(updateTime, 1000);
-  </script>
+</script>
 
 </body>
 </html>
