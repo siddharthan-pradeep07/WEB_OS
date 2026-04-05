@@ -94,6 +94,7 @@
  {
     flex: 1;
     padding: 16px;
+    display: flex;
   }
 
   .window-titlebar
@@ -111,7 +112,7 @@
 </style>
 </head>
 <body>
-   <CENTER><P>WEB OS</P></CENTER>
+   <CENTER><P><b>WEB OS</b></P></CENTER>
   <div class="taskbar">
     <button onclick="openWindow('Files', '📁', 'A quick brown fox jumps over a lazy dog')">📁</button>
     <button onclick="openWindow('Explorer', '🪐', 'search what you want')">🪐</button>
@@ -138,8 +139,15 @@
     function openWindow(name, icon, content) 
     {
       document.getElementById('popup-title').textContent = icon + ' ' + name;
-      document.getElementById('popup-content').textContent = content;
-      document.getElementById('popup').classList.add('open');
+
+      if (name === 'Nuclear') 
+       {
+        document.getElementById('popup-content').innerHTML = '<textarea style="width:100%; height:100%: border:2px solid #000000; border-radius: 5px; outline: none; resize: none; font-family: monospace; font-size: 14px;"></textarea>';  
+       }
+        else
+         {      
+          document.getElementById('popup-content').textContent = content;
+         }
     }
 
     function closeWindow() 
