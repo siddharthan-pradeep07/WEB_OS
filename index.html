@@ -70,42 +70,73 @@
   
 */
 
-.taskbar-L 
+.taskbar-vertical
 {
-  position: fixed;
-  bottom: 12px;
-  left: 12px;
-  width: 70px;
-  height: 400px;
-  background: #ffffff;
-  border-radius: 10px 10px 0px 10px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 12px;
-  gap: 12px;
-  box-shadow: 300px 342px 0px 0px #ffffff;
+    position: fixed;
+    left: 12px;
+    top: 50%;
+    top: 50%;
+    width: 50px;
+    height: calc(100vh - 120px);
+    background: #ffffff;
+    border-radius: 10px 10px 0 0;
+    z-index: 1000;
 }
 
-.taskbar-left button, .taskbar-bottom button
+.taskbar-curve
+{
+    position: fixed;
+    left: 12px;
+    bottom: 62px;
+    width: 100px;
+    height: 100px;
+    background: transparent;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.taskbar-curve::before
+{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 0 0 0 60px;
+    border-left: 50px solid #ffffff;
+    border-bottom: 50px solid #ffffff;
+    box-sizing: border-box;
+
+}
+
+.taskbar-horizontal {
+  position: fixed;
+  left: 112px;
+  bottom: 12px;
+  height: 50px;
+  width: calc(100vw - 140px);
+  background: #ffffff;
+  border-radius: 0 10px 10px 0;
+  z-index: 1000;
+}
+
+.taskbar-vertical button, .taskbar-horizontal button
 {
     width: 46px;
     height: 46px;
     background: #ffffff71;
-    border: 2px solid #000000;
+    border: 2px solid #000;
     border-radius: 10px;
     cursor: pointer;
-    color: black;
-    font-size: 20px;
+    font-size: 2*10px;   /*   2*10 just for fun...  */
 }
 
-.taskbar-left button:hover, .taskbar-bottom button:hover 
+.taskbar-vertical button:hover, .taskbar-horizontal button:hover
 {
-  background: #e0e0e0b9;
-  width: 50px;
-  height: 50px;
+    background: #e0e0e0b9;
+    width: 50px;
+    height: 50px;
 }
 
 .window
@@ -182,15 +213,22 @@
    <CENTER style="position:relative; z-index:1;"><P><b>WEB OS</b></P></CENTER>
    <CENTER style="position:relative; z-index:1;"><p id="currentTime"></p></CENTER>
    <!--         <script src="script.js"></script>               -->
-  <div class="taskbar-L">
-  <button onclick="openWindow('Files', '📁', 'Files here')">📁</button>
-  <button onclick="openWindow('searchy', '🪐', 'search what you want')">🪐</button>
-  <button onclick="openWindow('Nuclear IDE', '☢️', 'Nuclear IDE program here')">☢️</button>
-  <button onclick="openWindow('Games', '🎮', 'play games here')">🎮</button>
-  <button onclick="openWindow('Paint', '🎨', 'Paint here')">🎨</button>
-  <button onclick="openWindow('Music', '🎵', 'listn to music here')">🎵</button>
-  <button onclick="openWindow('Settings', '⚙️', 'Settings')">⚙️</button>
-</div>
+  <div class="taskbar-vertical">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:12px 0;"></div>
+      <button onclick="openWindow('Files', '📁', 'Files here')">📁</button>
+      <button onclick="openWindow('searchy', '🪐', 'search what you want')">🪐</button>
+      <button onclick="openWindow('Nuclear IDE', '☢️', 'Nuclear IDE program here')">☢️</button>
+    </div>
+ </div> 
+ <div class="taskbar-curve"></div>
+ <div class="taskbar-horizontal">
+   <div style="display:flex; flex-direction:row; align-items:center; gap:12px; padding:0 12px; height:100%;"></div>
+     <button onclick="openWindow('Games', '🎮', 'play games here')">🎮</button>
+     <button onclick="openWindow('Paint', '🎨', 'Paint here')">🎨</button>
+     <button onclick="openWindow('Music', '🎵', 'listn to music here')">🎵</button>
+     <button onclick="openWindow('Settings', '⚙️', 'Settings')">⚙️</button>
+   </div>
+ </div>
 
 <div class="window" id="popup">
 <div class="window-titlebar">
