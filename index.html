@@ -4,9 +4,12 @@
 <title>WEB OS</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #646b6a7c; min-height: 100vh; font-family: sans-serif; }
-
- 
+ body 
+ { 
+    background: #646b6a7c; 
+    min-height: 100vh; 
+    font-family: sans-serif; 
+}
  body
  {
     background-image: url('photos/web_os_bg.jpeg');
@@ -109,7 +112,8 @@
 
 }
 
-.taskbar-horizontal {
+.taskbar-horizontal 
+{
   position: fixed;
   left: 112px;
   bottom: 30px;
@@ -219,9 +223,10 @@
    <!--         <script src="script.js"></script>               -->
   <div class="taskbar-vertical">
     <div style="display:flex; flex-direction:column; align-items:center; gap:12px; padding:12px 0;"></div>
-      <button onclick="openWindow('Files', '📁', 'Files here')">📁</button>
-      <button onclick="openWindow('searchy', '🪐', 'search what you want')">🪐</button>
+      <button onclick="openWindow('Files', '📂', 'Files here')">📂</button>
+      <button onclick="openWindow('searchy', '🔴', 'search what you want')">🔴</button>
       <button onclick="openWindow('Nuclear IDE', '☢️', 'Nuclear IDE program here')">☢️</button>
+      <button onclick="openWindow('Data logger', '📟', 'Log data here')">📟</button>
     </div>
  </div> 
  <div class="taskbar-curve"></div>
@@ -229,8 +234,8 @@
    <div style="display:flex; flex-direction:row; align-items:center; gap:12px; padding:0 12px; height:100%;"></div>
      <button onclick="openWindow('Games', '🎮', 'play games here')">🎮</button>
      <button onclick="openWindow('Paint', '🎨', 'Paint here')">🎨</button>
-     <button onclick="openWindow('Music', '🎵', 'listn to music here')">🎵</button>
-     <button onclick="openWindow('Settings', '⚙️', 'Settings')">⚙️</button>
+     <button onclick="openWindow('Music', '📻', 'listn to music here')">📻</button>
+     <button onclick="openWindow('Settings', '🧻', 'Settings')">🧻</button>
    </div>
  </div>
 
