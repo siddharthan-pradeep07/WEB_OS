@@ -189,18 +189,17 @@
    <!--         <script src="script.js"></script>               -->
   
 
-<div id="login-overlay" style="position:fixed; inset:0; background: #ffffff; z-index:9999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px;">
-    <h2 style="font-family: sans-serif; color: #333;">WEBOS LOGIN</h2>
-    <input id="l-email" type="email" placeholder="Email" style="padding: 10px; width: 250px;">
-    <input id="l-pass" type="password" placeholder="Passcode" style="padding: 10px; width: 250px;">
-    <button onclick="loginUser()" style="padding: 10px 20px; cursor: pointer;">Sign In 😏</button>
-    <p id="login-error" style="color: #ee5d5d"></p>
+<div id="auth-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    <div id="login-form" style="display: none; background: #ffffff; padding: 20px; border-radius: 10px; border: 1px solid #cccccc; flex-direction: column; gap: 10px; margin-bottom: 10px; box-shadow: 0 4px 15px #000000;">
+        <input id="l-email" type="email" placeholder="Email" style="padding: 8px;">
+        <input id="l-pass" type="password" placeholder="Passcode" style="padding: 8px;">
+        <button onclick="loginUser()" style="cursor:pointer; padding: 8px;">Sign In 😏</button>
+        <p id="login-error" style="color: #ee5d5d; font-size: 12px; margin: 0;"></p>
+    </div>
+    <button id="auth-btn" onclick="handleAuthClick()" style="padding: 10px 20px; border-radius: 5px; cursor: pointer; background: #333; color: white; border: none;">
+        Login>
+    </button>
 </div>
-
-<div id="logout-bar" style="position:fixed;top:10px;right:10px;z-index:1000;display:none;">
-  <button onclick="logoutUser()">Log Out</button>
-</div>
-
 
   <div id="currentTime" style="position: fixed; top:16px; right: 16px; background: #00000088; border: 5px solid #ff5656; border-radius: 10px; padding: 8px 16px; font-family: 'Orbitron', sans-serif; font-size: 24px; color: #ffffff; letter-spacing: 4px; z-index:1000; font-weight: 500 "></div>
   <div class="taskbar-vertical">
@@ -291,29 +290,71 @@ function closeWindow()
     document.getElementById('popup').classList.remove('open');
   }
 
-function loginUser()
+function handleAuthClick() 
   {
-    const email = document.getElementById('l-email').value.trim();
-  const pass = document.getElementById('l-pass').value;
-  const users = JSON.parse(localStorage.getItem('wos_users') || '{}');
-  if (users[email] && users[email] !== pass) { document.getElementById('login-error').textContent = 'Wrong passcode'; return; }
-  if (!users[email]) { users[email] = pass; localStorage.setItem('wos_users', JSON.stringify(users)); } 
-  localStorage.setItem('wos_session', email);
-  document.getElementById('login-overlay').style.display = 'none';
-  document.getElementById('logout-bar').style.display = 'block';
+    const session = localStorage.getItem('wos_session');
+    const form = document.getElementById('login-form');
+    
+    if (session) 
+    {
+        
+        logoutUser();
+    } 
+    else 
+    {
+      
+        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'flex' : 'none';
+    }
+ } 
 
-  }
+function loginUser() 
+ {
+    const email = document.getElementById('l-email').value.trim();
+    const pass = document.getElementById('l-pass').value;
+    const users = JSON.parse(localStorage.getItem('wos_users') || '{}');
+
+    if (users[email] && users[email] !== pass) 
+    {
+        document.getElementById('login-error').textContent = 'Wrong passcode';
+        return;
+    }
+
+    if (!users[email]) 
+    {
+        users[email] = pass;
+        localStorage.setItem('wos_users', JSON.stringify(users));
+    }
+
+    localStorage.setItem('wos_session', email);
+    updateAuthUI();
+}
 
 function logoutUser() 
-  { 
-    localStorage.removeItem('wos_session'); 
-    location.reload(); 
+{
+    localStorage.removeItem('wos_session');
+    updateAuthUI();
 }
-if (localStorage.getItem('wos_session')) 
-  { 
-    document.getElementById('login-overlay').style.display = 'none'; 
-    document.getElementById('logout-bar').style.display = 'block'; 
-  }
+
+function updateAuthUI() 
+{
+    const session = localStorage.getItem('wos_session');
+    const btn = document.getElementById('auth-btn');
+    const form = document.getElementById('login-form');
+
+    if (session) 
+    {
+        btn.textContent = 'Log Out';
+        btn.style.background = '#ff5656'; 
+        form.style.display = 'none';     
+    } 
+    else 
+    {
+        btn.textContent = 'Login';
+        btn.style.background = '#333';
+    }
+}
+
+updateAuthUI();
 
 function updateTime() 
   { 
@@ -322,6 +363,7 @@ function updateTime()
     const minutes = String(now.getMinutes()).padStart(2, '0');
     document.getElementById('currentTime').textContent = `${hours}:${minutes}`;
  }
+     updateAuthUI();
      updateTime();
      setInterval(updateTime, 1000);
 </script>
