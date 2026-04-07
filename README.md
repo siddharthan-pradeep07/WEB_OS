@@ -7,7 +7,7 @@ Features:
   Easily the user can switch apps(only one active window at a time)
   “state saving” for "NUCLEAR IDE" an app in which you could type and minimize and then reopen it and work.
 
-  ![alt text](image-5.png)
+  ![alt text](photos/image-5.png)
 
 📂 Files (basic placeholder system)                 
 🔴 Search tool (UI placeholder)                                     
@@ -37,18 +37,18 @@ Taskbar UI:
      
      
      
- ![alt text](image-8.png)           
+ ![alt text](photos/image-8.png)           
 
 Digital Clock:                     
   A real time clock at the top right corner, that displayes the exact time per region
   It has a digital clock design with 'Orbital' font
   
-  ![alt text](image-4.png)
+  ![alt text](photos/image-4.png)
 
 Visual Design:                        
  It uses a frosted glass design/vibe, with blur effects
 
- ![alt text](image-6.png)
+ ![alt text](photos/image-6.png)
 
 Storage of passcodes:              
   Uses local browser Storage for the login details
