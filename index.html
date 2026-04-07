@@ -38,7 +38,7 @@
     left: 12px;
     top: 500px;
     width: 50px;
-    height: calc(100vh - 620px);
+    height: calc(100vh - 630px);
     background: #ffffffb9;
     border-radius: 10px 10px 0 0;
     z-index: 1000;
@@ -187,6 +187,18 @@
    <CENTER style="position:relative; z-index:1;"><P><b>WEB OS</b></P></CENTER>
    <!--         <p id="currentTime" style="position:fixed; top:16px; right: 16px;  z-index:1000;"></p>  -->
    <!--         <script src="script.js"></script>               -->
+  
+
+<div id="login-overlay" style="position:fixed; inset:0; background: #ffffff; z-index:9999; "></div>
+   <input id="l-email" type="email" placeholder="Email">
+   <input id="l-pass" type="password" placeholder="Passcode">
+   <button onclick="loginUser()">Sign In😏</button>
+   <p id="ooopsie!"></p>
+</div>
+
+<div id="logout-bar" style="position:fixed;top:10px;right:10px;z-index:1000;display:none;">
+  <button onclick="logoutUser()">Log Out</button>
+</div>
 
 
   <div id="currentTime" style="position: fixed; top:16px; right: 16px; background: #00000088; border: 5px solid #ff5656; border-radius: 10px; padding: 8px 16px; font-family: 'Orbitron', sans-serif; font-size: 24px; color: #ffffff; letter-spacing: 4px; z-index:1000; font-weight: 500 "></div>
@@ -277,6 +289,31 @@ function closeWindow()
     currentApp = null;
     document.getElementById('popup').classList.remove('open');
   }
+
+function loginUser()
+  {
+    const email = document.getElementById('l-email').value.trim();
+  const pass = document.getElementById('l-pass').value;
+  const users = JSON.parse(localStorage.getItem('wos_users') || '{}');
+  if (users[email] && users[email] !== pass) { document.getElementById('login-error').textContent = 'Wrong passcode'; return; }
+  if (!users[email]) { users[email] = pass; localStorage.setItem('wos_users', JSON.stringify(users)); } 
+  localStorage.setItem('wos_session', email);
+  document.getElementById('login-overlay').style.display = 'none';
+  document.getElementById('logout-bar').style.display = 'block';
+
+  }
+
+function logoutUser() 
+  { 
+    localStorage.removeItem('wos_session'); 
+    location.reload(); 
+}
+if (localStorage.getItem('wos_session')) 
+  { 
+    document.getElementById('login-overlay').style.display = 'none'; 
+    document.getElementById('logout-bar').style.display = 'block'; 
+  }
+
 function updateTime() 
   { 
     const now = new Date();
