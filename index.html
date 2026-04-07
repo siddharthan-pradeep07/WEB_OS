@@ -334,6 +334,20 @@ function toggleModal(show)
     if (!show) document.getElementById('login-error').textContent = ''; 
  }
 
+function handleAuthClick()
+{
+    const session = localStorage.getItem('wos_session');
+
+    if (session)
+    {
+        logoutUser();
+    }
+    else
+    {
+        toggleModal(true);
+    }
+}
+
 let selectedEmoji = '😏'; 
 
 function setEmoji(emoji) 
