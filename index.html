@@ -272,7 +272,19 @@
      <div class="window-content" id="popup-content"></div>
   </div>
 
-<script>
+<div id="save-modal" style="display: none; position: fixed; inset:0; background: #000000b9; backdrop-filter: blur(8px); z-index: 9998; align-items: center; justify-content: center;">
+   <div style="background: #ffffff; width: 340px; padding: 30px; border-radius:16px; display: flex; flex-direction: column; gap: 16px;">
+        <h3 style="margin:0; font-family:'Orbitron'; font-size:16px; color:#333;">save</h3>
+        <input id="save-name" type="text" placeholder="eg: WEBOS V1.0.67" style="padding:12px; border:1.5px solid #ddd; border-radius:8px; font-size:15px; outline:none;">
+        <div style="display:flex; gap:10px; justify-content:flex-end;"></div>
+          <button onclick="cancelSave()" style="padding:10px 20px; background:none; border:1.5px solid #db8787; border-radius:8px; cursor:pointer; font-size:14px; color:#555;">Cancel</button>
+          <button onclick="clickSave()" style="padding:10px 20px; background:#523e3eb6; color:white; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:bold;">Save!</button>
+        </div> 
+        <p id="save-error" style="color: #ff5656; font-size: 13px; text-align: center;"></p>
+    </div>
+</div>
+
+<script>   
     let windows = {};
 let currentApp = null;
 
@@ -280,7 +292,7 @@ function openWindow(name, icon, content)
 {
   if (currentApp === 'Nuclear IDE')
   {
-    const ta = document.querySelector('#popup-content textarea'); // Took reference from a html forum for this part [this line and the next line]
+    const ta = document.getElementById('ide-textarea');  // Took reference from a html forum for this part [this line and the next line]
     if (ta) windows['Nuclear IDE'] = '<textarea style="width:100%; height:100%; border:2px solid #000000; border-radius:5px; outline:none; resize:none; font-family:monospace; font-size:14px;">' + ta.value + '</textarea>';
   }
 
@@ -296,7 +308,13 @@ function openWindow(name, icon, content)
   {
     if (name === 'Nuclear IDE')
      {
-       windows[name] = '<textarea style="width:100%; height:100%; border:2px solid #000000; border-radius:5px; outline:none; resize:none; font-family:monospace; font-size:14px;"></textarea>';
+       windows[name] = `<div style="display:flex; flex-direction:column; width:100%; height:100%; gap:8px;">
+                         <div style="display:flex; justify-content:flex-end;">
+                           <button onclick="openSaveModal()" style="padding:6px 14px; background:#333; color:white; border:none; border-radius:8px; cursor:pointer; font-size:13px;">Save</button>
+                         </div>
+                         <textarea id="ide-textarea" style="flex:1; border:2px solid #000; border-radius:5px; outline:none; resize:none; font-family:monospace; font-size:14px;"></textarea>
+                      </div>`;
+
      }
     else
      {
@@ -423,6 +441,36 @@ function updateAuthUI()
         btn.style.background = '#333';
         pfpDiv.style.display = 'none';
     }
+}
+
+function openSaveModal() 
+{
+    document.getElementById('save-modal').style.display = 'flex';
+    document.getElementById('save-name').value = '';
+    document.getElementById('save-error').textContent = '';
+}
+
+function cancelSave() 
+{
+    document.getElementById('save-modal').style.display = 'none';
+}
+
+function clickSave() 
+{
+    const name = document.getElementById('save-name').value.trim();
+    if (!name) 
+    {
+        document.getElementById('save-error').textContent = 'Nothing? you are so boring...';
+        return;
+    }
+    const ta = document.getElementById('ide-textarea');
+    const code = ta ? ta.value : '';
+    const blob = new Blob([code], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name + '.txt';
+    a.click();
+    cancelSave();
 }
 
 function updateTime() 
