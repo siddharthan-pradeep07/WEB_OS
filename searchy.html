@@ -32,6 +32,7 @@
                     });
 
                     const data = await result.json();
+                    console.log(data);
                     document.getElementById('ans').textContent = data.choices[0].message.content;
 
                 }
