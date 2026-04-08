@@ -15,18 +15,18 @@
                 async function ask()
                 {
                     const question = document.getElementById('67').value;
-                    document.getElementbyid('ans').textContent = 'Analizing your curiosity...';
+                    document.getElementById('ans').textContent = 'Analizing your curiosity...';
 
-                    const result = await fetch('https://openrouter.ai/api/v1/chat/comletions')
+                    const result = await fetch('https://openrouter.ai/api/v1/chat/completions', 
                     {
                         method: 'POST',
                         headers: 
                           {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer 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'
+                            'Authorization': 'Bearer YOUR_OPENROUTER_KEY_HERE'
                            },
                            body: JSON.stringify({
-                            model: 'gpt-4o',
+                            model: 'openai/gpt-4o',
                             messages: [{role: 'user', content: question}]
                            }) 
                     });
@@ -36,6 +36,5 @@
 
                 }
             </script>
-
          </body>
 </html>
