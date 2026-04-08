@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Searchy</title>
+    </head>
+         <body>
+           <h1>Searchy</h1>
+
+           <input id="67" type="text" placeholder="Text your curiosity">
+           <button onclick="ask()">Go</button>
+
+           <p id="ans">....</p>
+                
+            <script>
+                async function ask()
+                {
+                    const question = document.getElementById('67').value;
+                    document.getElementbyid('ans').textContent = 'Analizing your curiosity...';
+
+                    const result = await fetch('https://openrouter.ai/api/v1/chat/comletions')
+                    {
+                        method: 'POST',
+                        headers: 
+                          {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer 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'
+                           },
+                           body: JSON.stringify({
+                            model: 'gpt-4o',
+                            messages: [{role: 'user', content: question}]
+                           }) 
+                    });
+
+                    const data = await result.json();
+                    document.getElementById('ans').textContent = data.choices[0].message.content;
+
+                }
+            </script>
+
+         </body>
+</html>
