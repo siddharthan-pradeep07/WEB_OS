@@ -496,7 +496,7 @@ function Filesapp()
 
     if (!session) 
     {
-        return '<p style="text-align:center; margin-top:20px; font-style: italic; font-size:18px;">Login and create a file in nuclear ide to see your files</p>';
+        return '<p style="text-align:center; margin-top:20px; font-size:18px;">Login and create a file in nuclear ide to see your files</p>';
     }
 
     const filesKey = 'wos_files_' + session;
@@ -505,7 +505,7 @@ function Filesapp()
 
     if (fileNames.length === 0) 
     {
-        return '<p style="text-align:center; margin-top:20px; font-size:18px;"></p>';
+        return '<p style="text-align:center; margin-top:20px; font-style: italic; font-size:18px;">Create files using nuclear IDE to view here</p>';
     }
     
     let html = '<div style="display:flex; flex-direction:column; gap:10px; width:100%; padding:8px;">';
@@ -513,10 +513,10 @@ function Filesapp()
     fileNames.forEach(function(name)
     {
         html += `<div style="display:flex; align-items:center; justify-content:space-between; background:#ffffff62; border:1.5px solid #5c4e4eab; border-radius:10px; padding:10px 14px;">
-                    <span style="font-family:monospace; font-size:14px;">📄 ${name}</span>
+                    <span style="font-family:monospace; font-size:14px;">📂 ${name}</span>
                     <div style="display:flex; gap:8px;">
-                        <button onclick="openIDE('${name}')" style="padding:6px 12px; background:#333; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px;"> Open in IDE </button>
-                        <button onclick="deleteFile('${name}')" style="padding:6px 12px; background:#ff5656; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px;"> Delete </button>
+                        <button onclick="openIDE('${name}')" style="padding:6px 12px; background:#333333; color:white; border:none; border-radius:8px; cursor:pointer; font-family:honk;font-size:12px;"> Open in IDE </button>
+                        <button onclick="deleteFile('${name}')" style="padding:6px 12px; background:#ff5656; color:white; border:none; border-radius:8px; cursor:pointer; font-family:honk; font-size:12px;"> Delete </button>
                     </div>
                  </div>`;
     });    
