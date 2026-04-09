@@ -18,21 +18,22 @@
                     document.getElementById('ans').textContent = 'Analizing your curiosity...';
 
                     const result = await fetch('https://api.cohere.ai/v1/chat',
+                    {
                         method: 'POST',
                         headers: 
                           {
                             'Content-Type': 'application/json',
                             'Authorization': 'Bearer zifrpXHD5A3xSDt6b9AUHOkh8xXjr2KwH2hvC7hy'
                            },
-                           body: JSON.stringify({
+                            body: JSON.stringify({
                             model: 'command-r',
-                            messages: question
+                            message: question
                            }) 
                     });
 
                     const data = await result.json();
                     console.log(data);
-                    document.getElementById('ans').textContent = data.choices[0].message.content;
+                    document.getElementById('ans').textContent = data.text;
 
                 }
             </script>
