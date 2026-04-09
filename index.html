@@ -186,7 +186,7 @@
 </style>
 </head>
 <body>
-   <CENTER style="position:relative; z-index:1; font-family: Honk; font-size: 50px;"><P><b>WEBOS</b></P></CENTER>
+   <CENTER style="position:relative; z-index:1; font-family: Honk; font-size: 70px; font-variation-settings: 'SHLN' 50;"><P><b>WEBOS</b></P></CENTER>
   
 <div id="login-modal" style="display: none; 
                              position: fixed; 
@@ -228,14 +228,14 @@
           <span onclick="setEmoji('😴')" style="cursor:pointer; border: 2px solid transparent;" class="emoji-opt">😴</span>
         </div>
 
-        <button onclick="loginUser()" style="padding: 15px; background: #333; color: white; border: none; border-radius: 8px; cursor: pointer; font-family:'Honk'; font-size: 16px; transition: 0.2s;">ENTER</button>
-        <button onclick="toggleModal(false)" style="background: none; border: none; color: #888; cursor: pointer; font-family:'Honk'; font-size: 14px;">Cancel</button>
+        <button onclick="loginUser()" style="padding: 15px; background: #333; color: white; border: none; border-radius: 8px; cursor: pointer; font-family:'Honk'; font-size: 25px; transition: 0.2s;">ENTER</button>
+        <button onclick="toggleModal(false)" style="background: none; border: none; color: #888; cursor: pointer; font-family:'Honk'; font-size: 20px;">Cancel</button>
         <p id="login-error" style="color: #ff5656; text-align: center; font-size: 14px; margin: 0; font-weight: bold;"></p>
     </div>
 </div>
 
 <div style="position: fixed; bottom: 20px; right: 20px; z-index: 10000;">
-    <button id="auth-btn" onclick="handleAuthClick()" style="padding: 12px 24px; border-radius: 8px; cursor: pointer; background: #333; color: white; border: none; font-family: 'Honk', sans-serif; font-size: 16px;transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+    <button id="auth-btn" onclick="handleAuthClick()" style="padding: 12px 24px; border-radius: 8px; cursor: pointer; background: #333; color: white; border: none; font-family: 'Honk', sans-serif; font-size: 22px;transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
         Login
     </button>
 </div>
@@ -277,11 +277,11 @@
 
 <div id="save-modal" style="display: none; position: fixed; inset:0; background: #000000b9; backdrop-filter: blur(8px); z-index: 9998; align-items: center; justify-content: center;">
    <div style="background: #ffffff; width: 340px; padding: 30px; border-radius:16px; display: flex; flex-direction: column; gap: 16px;">
-        <h3 style="margin:0; font-family:'Honk'; font-size:16px; color:#333;">save</h3>
+        <h3 style="margin:0; font-family:'Honk'; font-size:28px; color:#333;">save</h3>
         <input id="save-name" type="text" placeholder="eg: WEBOS V1.0.67" style="padding:12px; border:1.5px solid #ddd; border-radius:8px; font-size:15px; outline:none;">
         <div style="display:flex; gap:10px; justify-content:flex-end;"></div>
-          <button onclick="cancelSave()" style="padding:10px 20px; background:none; border:1.5px solid #db8787; border-radius:8px; cursor:pointer; font-size:14px; color:#555;">Cancel</button>
-          <button onclick="clickSave()" style="padding:10px 20px; background:#523e3eb6; color:white; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:bold;">Save!</button>
+          <button onclick="cancelSave()" style="padding:10px 20px; background:none; border:1.5px solid #db8787; border-radius:8px; cursor:pointer; font-family:'Honk'; font-size:28px; color:#555;">Cancel</button>
+          <button onclick="clickSave()" style="padding:10px 20px; background:#523e3eb6; color:white; border:none; border-radius:8px; cursor:pointer; font-family:'Honk'; font-size:28px;">Save</button>
         </div> 
         <p id="save-error" style="color: #ff5656; font-size: 13px; text-align: center;"></p>
     </div>
@@ -319,6 +319,12 @@ function openWindow(name, icon, content)
                       </div>`;
 
      }
+
+    if(name === 'Nuclear IDE')
+     {
+       windows[name] = Filesapp();
+     }
+      
     else
      {
        windows[name] = content;
@@ -327,7 +333,7 @@ function openWindow(name, icon, content)
 
   document.getElementById('popup-title').textContent = icon + ' ' + name;
 
-  if (name === 'Nuclear IDE' || name === 'Searchy')
+  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files')
    {
      document.getElementById('popup-content').innerHTML = windows[name];
    }
@@ -466,15 +472,86 @@ function clickSave()
         document.getElementById('save-error').textContent = 'Nothing? you are so boring...';
         return;
     }
+
+    const session = localStorage.getItem('wos_session');
+    if (!session)
+    {
+        document.getElementById('save-error').textContent = 'Login first and save your file';
+        return;
+    }
+    
     const ta = document.getElementById('ide-textarea');
     const code = ta ? ta.value : '';
-    const blob = new Blob([code], { type: 'text/plain' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = name + '.txt';
-    a.click();
+
+    const filesKey = 'wos_files_' + session;
+    const files = JSON.parse(localStorage.getItem(filesKey) || '{}');
+    files[name] = code;
+    localStorage.setItem(filesKey, JSON.stringify(files));
     cancelSave();
 }
+
+function Filesapp() 
+{
+    const session = localStorage.getItem('wos_session');
+
+    if (!session) 
+    {
+        return '<p style="text-align:center; margin-top:20px; font-size:18px;">Login and create a file in nuclear ide to see your files</p>';
+    }
+
+    const filesKey = 'wos_files_' + session;
+    const files = JSON.parse(localStorage.getItem(filesKey) || '{}');
+    const fileNames = Object.keys(files);
+
+    if (fileNames.length === 0) 
+    {
+        return '<p style="text-align:center; margin-top:20px; font-size:18px;">No files saved yet</p>';
+    }
+    
+    let html = '<div style="display:flex; flex-direction:column; gap:10px; width:100%; padding:8px;">';
+    
+    names.forEach(function(name)
+    {
+        html += `<div style="display:flex; align-items:center; justify-content:space-between; background:#ffffff62; border:1.5px solid #5c4e4eab; border-radius:10px; padding:10px 14px;">
+                    <span style="font-family:monospace; font-size:14px;">📄 ${name}</span>
+                    <div style="display:flex; gap:8px;">
+                        <button onclick="openIDE('${name}')" style="padding:6px 12px; background:#333; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px;"> Open in IDE </button>
+                        <button onclick="deleteFile('${name}')" style="padding:6px 12px; background:#ff5656; color:white; border:none; border-radius:8px; cursor:pointer; font-size:12px;"> Delete </button>
+                    </div>
+                 </div>`;
+    });    
+    
+    html += '</div>';
+    return html;
+}
+
+function openIde(name)
+{
+    const session = localStorage.getItem('wos_session');
+    const files = JSON.parse(localStorage.getItem('wos_files_' + session) || '{}');
+    const code = files[name] || '';
+
+    windows['Nuclear IDE'] = `<div style="display: flex; flex-direction:  column; width: 100%; height: 100%; gap: 8px;">
+                                <div style="display:flex; justify-content:flex-end;">
+                                  <button onclick="openSaveModal()" style="padding:6px 14px; background:#333; color:white; border:none; border-radius:8px; cursor:pointer; font-size:13px;"> Save </button>
+                                </div>
+                                <textarea id="ide-textarea" style="flex:1; border:2px solid #000; border-radius:5px; outline:none; resize:none; font-family:monospace; font-size:14px;">${code}</textarea>
+                             </div>`;
+
+    openWindow('Nuclear IDE', '☢️', '');
+}
+
+function deleteFile(name)
+{
+    const session = localStorage.getItem('wos_session');
+    const filesKey = 'wos_files_' + session;
+    const files = JSON.parse(localStorage.getItem(filesKey) || '{}');
+    delete files[name];
+    localStorage.setItem(filesKey, JSON.stringify(files));
+    windows['Files'] = Filesapp();
+    document.getElementById('popup-content').innerHTML = windows['Files'];
+}
+
 
 function updateTime() 
   { 
