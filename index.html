@@ -496,7 +496,7 @@ function Filesapp()
 
     if (!session) 
     {
-        return '<p style="text-align:center; margin-top:20px; font-size:18px;">Login and create a file in nuclear ide to see your files</p>';
+        return '<p style="text-align:center; margin-top:20px; font-style: italic; font-size:18px;">Login and create a file in nuclear ide to see your files</p>';
     }
 
     const filesKey = 'wos_files_' + session;
@@ -505,7 +505,7 @@ function Filesapp()
 
     if (fileNames.length === 0) 
     {
-        return '<p style="text-align:center; margin-top:20px; font-size:18px;">No files saved yet</p>';
+        return '<p style="text-align:center; margin-top:20px; font-size:18px;"></p>';
     }
     
     let html = '<div style="display:flex; flex-direction:column; gap:10px; width:100%; padding:8px;">';
