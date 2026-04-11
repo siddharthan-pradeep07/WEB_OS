@@ -78,8 +78,9 @@
   left: 112px;
   bottom: 30px;
   height: 50px;
-  width:0px;
-  max-width: calc(100vw - 1500px);
+  width: calc(100vw - 200px);
+  min-width: 310px;
+  max-width: calc(100vw - 200px);
   background: #ffffffb9;
   border-radius: 0 10px 10px 0;
   z-index: 1000;
@@ -93,20 +94,17 @@
 
 .taskbar-horizontal.expanded
 {
-    width: calc(100vw - 1500px);
-    min-width: 280px;
-    padding: 0 12px;
-    gap: 12px;
+    width: calc(100vw - 200px);
 }
 
-.taskbar-toggle
+.taskbar-toggle        /* commit 106 */
 {
     position: fixed;
-    left: 112px;
+    left: calc(112px + max(310px, calc(100vw - 1500px)));
     bottom: 30px;
     width: 28px;
     height: 50px;
-    backround: #ffffffb9;
+    background: #ffffffb9;
     border: none;
     border-radius: 0 10px 10px 0;
     cursor: pointer;
@@ -118,6 +116,7 @@
     align-items: center;
     justify-content: center;
     transition: left 0.35s cubic-bezier(0.42, 0, 0, 1);
+    
 
 }
 
@@ -432,7 +431,7 @@ function toggletaskbar()
     else
      {
         bar.classList.remove('expanded');
-        btn.style.left = '112px';
+        btn.style.left = '';
         btn.textContent = '>';
         btn.title = 'Show apps';
 
