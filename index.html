@@ -457,13 +457,13 @@ function toggletaskbar()
     taskbarOpen = !taskbarOpen;
     const bar = document.getElementById('taskbar-horizontal');
     const btn = document.getElementById('taskbar-toggle');
-    const extra = document.querySelector('.extra-app');
+    const extraapps = document.querySelectorAll('.extra-app');
 
     if (taskbarOpen)
      {
         bar.classList.add('expanded');
         bar.classList.remove('visible');
-        extra.forEach(b => b.style.display = 'inline-flex');
+        extraapps.forEach(b => b.style.display = 'inline-flex');
         btn.style.left = (112 + bar.offsetWidth) + 'px';
         btn.textContent = '<';
         btn.title = 'Hide apps';
@@ -472,7 +472,7 @@ function toggletaskbar()
      {
         bar.classList.remove('expanded');
         bar.classList.add('visible');
-        extra.forEach(b => b.style.display = 'none');
+        extraapps.forEach(b => b.style.display = 'none');
         btn.style.left = '';
         btn.textContent = '>';
         btn.title = 'Show apps';
