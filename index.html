@@ -109,10 +109,34 @@
 
 }
 
+.taskbar-horizontal-extra
+{
+    position: fixed;
+    left: calc(112px + 310px);
+    bottom: 30px;
+    height: 50px;
+    width: 0px;
+    background: #ffffffb9;
+    border-radius: 0 10px 10px 0;
+    z-index:999;
+    display flex;
+    align-items: center;
+    padding: 0;
+    gap:0;
+    overflow: hidden;
+}
+
+.taskbar-horizontal-extra.expanded
+{
+    width: 300px;
+    padding: 0 12px;
+    gap: 12px;
+}
+
 .taskbar-toggle        /* commit 106 */
 {
     position: fixed;
-    left: calc(112px + 310px - 5px);
+    left: calc(112px + 310px);
     bottom: 30px;
     width: 28px;
     height: 50px;
@@ -309,6 +333,11 @@
      <button onclick="openWindow('Settings', '🧻', 'Note: Close the nuclear ide once a file is saved <br> login for the best experience <br> すべての人間は ')">🧻</button>
  </div>
 
+ <div class="taskbar-horizontal-extra" id="taskbar-horizontal-extra">
+        <button onclick="openWindow('Calculator', '🧮', 'Calculate')">🧮</button>
+        <button onclick="openWindow('Mail', '📤', 'send emails!')">📤</button>
+ </div>
+
 <div class="window" id="popup">
 <div class="window-titlebar">
   <span class="window-title" id="popup-title">Window</span>
@@ -430,11 +459,13 @@ function toggletaskbar()
     taskbarOpen = !taskbarOpen;
     const bar = document.getElementById('taskbar-horizontal');
     const btn = document.getElementById('taskbar-toggle');
+    const extra = document.getElementById('taskbar-horizontal-extra');
 
     if (taskbarOpen)
      {
         bar.classList.add('expanded');
         bar.classList.remove('visible');
+        extra.classList.add('expanded');
         btn.style.left = (112 + bar.offsetWidth) + 'px';
         btn.textContent = '<';
         btn.title = 'Hide apps';
@@ -443,6 +474,7 @@ function toggletaskbar()
      {
         bar.classList.remove('expanded');
         bar.classList.add('visible');
+        extra.classList.remove('expanded');
         btn.style.left = '';
         btn.textContent = '>';
         btn.title = 'Show apps';
