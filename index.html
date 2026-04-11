@@ -78,7 +78,8 @@
   left: 112px;
   bottom: 30px;
   height: 50px;
-  width: calc(100vw - 1500px);
+  width:0px;
+  max-width: calc(100vw - 1500px);
   background: #ffffffb9;
   border-radius: 0 10px 10px 0;
   z-index: 1000;
@@ -86,6 +87,38 @@
   align-items: center;
   padding: 0 12px;
   gap: 12px;
+  overflow: hidden;
+  transition: width 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.taskbar-horizontal.expanded
+{
+    width: calc(100vw - 1500px);
+    min-width: 280px;
+    padding: 0 12px;
+    gap: 12px;
+}
+
+.taskbar-toggle
+{
+    position: fixed;
+    left: 112px;
+    bottom: 30px;
+    width: 28px;
+    height: 50px;
+    backround: #ffffffb9;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Orbitron', sans-serif;
+    color:#000000;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.35s cubic-bezier(0.42, 0, 0, 1);
+
 }
 
 .taskbar-vertical button, .taskbar-horizontal button
@@ -255,7 +288,9 @@
     <span id="current-pfp">😏</span>
 </div>
 
- <div class="taskbar-horizontal">
+ <button class="taskbar-toggle" id ="taskbar-toggle" onclick="toggletaskbar()" title="Show apps">></button>
+
+ <div class="taskbar-horizontal" id ="taskbar-horizontal">
      <button onclick="openWindow('Games', '🎮', 'play games here')">🎮</button>
      <button onclick="openWindow('Paint', '🎨', 'Paint here')">🎨</button>
      <button onclick="openWindow('Music', '📻', '<iframe src=\'Apps/musicapp.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">📻</button>
@@ -375,6 +410,33 @@ function handleAuthClick()
     {
         toggleModal(true);
     }
+}
+
+let taskbarOpen = false;
+
+function toggletaskbar()
+{
+    taskbarOpen = !taskbarOpen;
+    const bar = document.getElementById('taskbar-horizontal');
+    const btn = document.getElementById('taskbar-toggle');
+
+    if (taskbarOpen)
+     {
+        bar.classList.add('expanded');
+        btn.style.left = (112 + bar.offsetWidth) + 'px';
+        btn.textContent = '<';
+        btn.title = 'Hide apps';
+
+        setTimeout(() => { btn.style.left = (112 + bar.offsetWidth) + 'px';}, 360);
+     }
+    else
+     {
+        bar.classList.remove('expanded');
+        btn.style.left = '112px';
+        btn.textContent = '>';
+        btn.title = 'Show apps';
+
+     }
 }
 
 let selectedEmoji = '😏'; 
