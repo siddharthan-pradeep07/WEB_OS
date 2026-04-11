@@ -89,21 +89,21 @@
   padding: 0;
   gap: 0;
   overflow: hidden;
-  transition: width 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: none;
 }
 
 .taskbar-horizontal.visible
 {
-    width: calc(100vw- 200px);
-    min-width: 310px;
+    width: 310px;
+    min-width: 0px;
     padding: 0 12px;
     gap:12px;
 }
 
 .taskbar-horizontal.expanded
 {
-    width: calc(100vw - 200px);
-    min-width: 310px;
+    width: 600px;
+    min-width: 0px;
     padding: 0 12px;
     gap: 12px;
 
@@ -112,7 +112,7 @@
 .taskbar-toggle        /* commit 106 */
 {
     position: fixed;
-    left: calc(112px + max(310px, calc(100vw - 1500px)));
+    left: calc(112px + 310px);
     bottom: 30px;
     width: 28px;
     height: 50px;
@@ -127,7 +127,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: left 0.35s cubic-bezier(0.42, 0, 0, 1);
+    transition: none;
     
 
 }
@@ -434,11 +434,10 @@ function toggletaskbar()
     if (taskbarOpen)
      {
         bar.classList.add('expanded');
-        btn.style.left = '';
+        bar.classList.remove('visible');
+        btn.style.left = (112 + bar.offsetWidth) + 'px';
         btn.textContent = '<';
         btn.title = 'Hide apps';
-
-        setTimeout(() => { btn.style.left = (112 + bar.offsetWidth) + 'px';}, 360);
      }
     else
      {
