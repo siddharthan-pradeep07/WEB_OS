@@ -87,6 +87,8 @@
 
             function appendNumber(num)
             {
+                if(num === '.' && value.indexOf('.') !== -1) return;
+
                 if(value === '0' && num !== '.')
                 {
                     value = num;
@@ -95,10 +97,9 @@
                 {
                     value += num;
                 }
-                else if(num === '.' && value.indexOf('.') !== -1)
-                {
-                    return;
-                }
+
+                d.textContent = value;
+                
             }
 
             function chooseOperation(op)
@@ -108,6 +109,7 @@
                     value = value.slice(0, -1);
                 }
                 value += op;
+                d.textContent = value;
             }
 
             function del()
@@ -117,6 +119,20 @@
                 {
                     value = '0';
                 }
+                d.textContent = value;
+            }
+            function calculateResult()
+            {
+                try
+                {
+                    value = String(eval(value));
+                }
+                catch
+                {
+                    value = 'Error';
+                }
+                d.textContent = value;
             }
         </script>
+      </body>  
 </html>
