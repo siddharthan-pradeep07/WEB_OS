@@ -331,11 +331,9 @@
      <button onclick="openWindow('Music', '📻', '<iframe src=\'Apps/musicapp.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">📻</button>
      <button onclick="openWindow('Terminal', '🧰', 'CONTROL!')">🧰</button>
      <button onclick="openWindow('Settings', '🧻', 'Note: Close the nuclear ide once a file is saved <br> login for the best experience <br> すべての人間は ')">🧻</button>
- </div>
-
- <div class="taskbar-horizontal-extra" id="taskbar-horizontal-extra">
-        <button onclick="openWindow('Calculator', '🧮', 'Calculate')">🧮</button>
-        <button onclick="openWindow('Mail', '📤', 'send emails!')">📤</button>
+ 
+     <button class="extra-app" style="display:none" onclick="openWindow('Calculator', '🧮', 'Calculate')">🧮</button>
+     <button class="extra-app" style="display:none" onclick="openWindow('Mail', '📤', 'send emails!')">📤</button>
  </div>
 
 <div class="window" id="popup">
@@ -459,13 +457,13 @@ function toggletaskbar()
     taskbarOpen = !taskbarOpen;
     const bar = document.getElementById('taskbar-horizontal');
     const btn = document.getElementById('taskbar-toggle');
-    const extra = document.getElementById('taskbar-horizontal-extra');
+    const extra = document.querySelector('.extra-app');
 
     if (taskbarOpen)
      {
         bar.classList.add('expanded');
         bar.classList.remove('visible');
-        extra.classList.add('expanded');
+        extra.forEach(b => b.style.display = 'inline-flex');
         btn.style.left = (112 + bar.offsetWidth) + 'px';
         btn.textContent = '<';
         btn.title = 'Hide apps';
@@ -474,7 +472,7 @@ function toggletaskbar()
      {
         bar.classList.remove('expanded');
         bar.classList.add('visible');
-        extra.classList.remove('expanded');
+        extra.forEach(b => b.style.display = 'none');
         btn.style.left = '';
         btn.textContent = '>';
         btn.title = 'Show apps';
