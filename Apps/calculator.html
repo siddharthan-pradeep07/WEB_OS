@@ -45,10 +45,6 @@
             {
                 background: #ffffffc2;
             }
-            .span-two
-            {
-                grid-column: span 2;
-            }
 
         </style>
     </head>
@@ -72,12 +68,9 @@
                 <button onclick="chooseOperation('-')">-</button>
 
                 <button onclick="appendNumber('.')">.</button>
-                <button class="span-two" onclick="appendNumber('0')">0</button>
+                <button onclick="appendNumber('0')">0</button>
                 <button onclick="chooseOperation('+')">+</button>
-                <button onclick="del()">⌫</button>
-
-                <button class="span-two" style="background:#ff00002b; color:#000000c2;" onclick="clearDisplay()">C</button>
-                <button class="span-two" style="background:#00ff002b; color:#000000c2;" onclick="calculateResult()">=</button>
+                <button onclick="calculateResult()" style="background:#00ff002b; color:#000000c2;">=</button>
             </div>
         </div>
 
@@ -112,15 +105,6 @@
                 d.textContent = value;
             }
 
-            function del()
-            {
-                value = value.slice(0, -1);
-                if(value === '')
-                {
-                    value = '0';
-                }
-                d.textContent = value;
-            }
             function calculateResult()
             {
                 try
