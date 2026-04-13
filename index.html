@@ -334,7 +334,7 @@
  
      <button class="extra-app" style="display:none" onclick="openWindow('Calculator', '🧮', '<iframe src=\'Apps/calculator.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🧮</button>
      <button class="extra-app" style="display:none" onclick="openWindow('Mail', '📤', 'send emails!')">📤</button>
-     <button class="extra-app" style="display:none" onclick="openWindow('About', '❔', '<iframe src=\'Apps/about.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>' )">❔</button>
+     <button class="extra-app" style="display:none" onclick="openWindow('About', '❔', '<iframe src=\'Apps/about.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">❔</button>
  </div>
 
 <div class="window" id="popup">
@@ -349,10 +349,10 @@
      <div class="window-content" id="popup-content"></div>
   </div>
 
-<div id="save-modal" style="display: none; position: fixed; inset:0; background: #000000b9; backdrop-filter: blur(8px); z-index: 9998; align-items: center; justify-content: center;">
+<div id="save-modal" style="display: none; position: fixed; inset:0; background: #00000000; backdrop-filter: blur(8px); z-index: 9998; align-items: center; justify-content: center;">
    <div style="background: #ffffff; width: 340px; padding: 30px; border-radius:16px; display: flex; flex-direction: column; gap: 16px;">
         <h3 style="margin:0; font-family:'Honk'; font-size:28px; color:#333;">save</h3>
-        <input id="save-name" type="text" placeholder="eg: WEBOS V1.0.67" style="padding:12px; border:1.5px solid #ddd; border-radius:8px; font-size:15px; outline:none;">
+        <input id="save-name" type="text" placeholder="typo here." style="padding:12px; border:1.5px solid #ddd; border-radius:8px; font-size:15px; outline:none;">
         <div style="display:flex; gap:10px; justify-content:flex-end;"></div>
           <button onclick="cancelSave()" style="padding:10px 20px; background:none; border:1.5px solid #db8787; border-radius:8px; cursor:pointer; font-family:'Honk'; font-size:28px; color:#555;">Cancel</button>
           <button onclick="clickSave()" style="padding:10px 20px; background:#523e3eb6; color:white; border:none; border-radius:8px; cursor:pointer; font-family:'Honk'; font-size:28px;">Save</button>
@@ -363,7 +363,7 @@
 
 <script>   
     let windows = {};
-let currentApp = null;
+    let currentApp = null;
 
 function openWindow(name, icon, content)
 {
@@ -407,7 +407,7 @@ function openWindow(name, icon, content)
 
   document.getElementById('popup-title').textContent = icon + ' ' + name;
 
-  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files' || name === 'Music' || name === 'Calculator' || name === 'Games')
+  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files' || name === 'Music' || name === 'Calculator' || name === 'Games' || name === 'About')
    {
      document.getElementById('popup-content').innerHTML = windows[name];
    }
