@@ -326,7 +326,7 @@
  <button class="taskbar-toggle" id ="taskbar-toggle" onclick="toggletaskbar()" title="Show apps">></button>
 
  <div class="taskbar-horizontal visible" id ="taskbar-horizontal">
-     <button onclick="openWindow('Games', '🎮', 'play games here')">🎮</button>
+     <button onclick="openWindow('Games', '🎮', '<iframe src=\'Apps/games.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🎮</button>
      <button onclick="openWindow('Paint', '🎨', 'Paint here')">🎨</button>
      <button onclick="openWindow('Music', '📻', '<iframe src=\'Apps/musicapp.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">📻</button>
      <button onclick="openWindow('Terminal', '🧰', 'CONTROL!')">🧰</button>
@@ -406,7 +406,7 @@ function openWindow(name, icon, content)
 
   document.getElementById('popup-title').textContent = icon + ' ' + name;
 
-  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files' || name === 'Music' || name === 'Calculator')
+  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files' || name === 'Music' || name === 'Calculator' || name === 'Games')
    {
      document.getElementById('popup-content').innerHTML = windows[name];
    }

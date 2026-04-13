@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Games</title>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box;}
+
+            body
+            {
+                background: transparent;
+                font-family: sans-serif;
+                padding: 16px;
+            }
+
+            .games-grid
+            {
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                gap: 12px;
+            }
+            .game-icon
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                padding: 12px;
+                border-radius: 12px;
+                cursor: pointer;
+                border: 2px solid #3d3636ab;
+                background: #ffffff67
+            }
+            .game-icon:hover
+            {
+                background: #ffffffc2;
+            }
+            .game-icon span
+            {
+                font-size: 64px;  
+            }
+            .game-icon p
+            {
+                font-size: 12px; text-align: center;
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        <h1>Games</h1>
+        <div class="games-grid">
+            <div class="game-icon" onclick="location.href='calculator.html'">
+                <span>🧮</span>
+                <p>Calculator</p>
+            </div>
+            <div class="game-icon" onclick="location.href='searchy.html'">
+                <span>🗿</span>
+                <p>Searchy</p>
+            </div>
+            <div class="game-icon" onclick="location.href='musicapp.html'">
+                <span>🎵</span>
+                <p>MusicApp</p>
+            </div>
+</html>
