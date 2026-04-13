@@ -4,12 +4,14 @@
         <title>Searchy</title>
     </head>
          <body>
-           <h1>Searchy</h1>
+            <script src="../config.js"></script>
+            <h1>Searchy</h1>
+
 
            <input id="67" type="text" placeholder="Text your curiosity">
            <button onclick="ask()">Go</button>
 
-           <p id="ans">....</p>
+           <p id="ans">......</p>
                 
             <script>
                 async function ask()
@@ -17,23 +19,28 @@
                     const question = document.getElementById('67').value;
                     document.getElementById('ans').textContent = 'Analizing your curiosity...';
 
-                    const result = await fetch('https://api.cohere.ai/v1/chat',
+                    const result = await fetch('https://ai.hackclub.com/proxy/v1/chat/completions',
                     {
                         method: 'POST',
                         headers: 
                           {
                             'Content-Type': 'application/json',
-                            'Authorization': 'Bearer zifrpXHD5A3xSDt6b9AUHOkh8xXjr2KwH2hvC7hy'
+                            'Authorization': 'Bearer' + CONFIG.API_KEY
                            },
                             body: JSON.stringify({
-                            model: 'command-r',
-                            message: question
+                            model: 'qwen/qwen3-32b',
+                            messages: [
+                                {
+                                    role: 'user',
+                                    content: question
+                                }
+                            ],
                            }) 
                     });
 
                     const data = await result.json();
                     console.log(data);
-                    document.getElementById('ans').textContent = data.text;
+                    document.getElementById('ans').textContent = data.choices[0].message.content;
 
                 }
             </script>
