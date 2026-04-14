@@ -1,71 +1,119 @@
-About:                        
-  An OS that is programmed as a website — to be frank, it is like a mini operating system that runs entirely inside a browser.
-  A user could just open the webpage and the user can interact with apps, windows, and a desktop-like interface.
+WEBOS:
+  An OS that is programmed as a website — to be frank, it is like a mini operating system that runs entirely inside a browser. A user could just open the webpage and they can interact with apps, windows, and a desktop-like interface. No installation, no setup, just open and use.
 
-Features:                       
-  Window-based interface with open, close, and minimize controls
-  Easily the user can switch apps(only one active window at a time)
-  “state saving” for "NUCLEAR IDE" an app in which you could type and minimize and then reopen it and work.
+Features:
+    Window System:
+       Click an app to open a window interface.
+       Open and then, minimize (—), and close (✕) controls in the top right corner.
+       Centered popup window design with frosted glass style.
+       Switching apps automatically hides the current window.
+       State saving, when an window is minimized, it doesn't delete the progress but does delete when closed.
 
-  ![alt text](photos/image-5.png)
+    Taskbar
+       Vertical taskbar on the left holds the important apps
+       Curved taskbar for seperating the apps.
+       Horizontal taskbar at the bottom — holds secondary apps.
+       (▶/◀) buttons can be used to expand and contract the taskbar, while expanded it reveals more apps.
+       Profile emoji sits right on the curve when logged in.
 
-📂 Files (basic placeholder system)                 
-🔴 Search tool (UI placeholder)                                     
-☢️ Nuclear IDE (text/code editor with saved content)                          
-📟 Data Logger                            
-🎮 Games                           
-🎨 Paint                                
-📻 Music                      
-🧻 Settings
+    Profile & Login/Logout System
+       Email + password login (custum passcode)
+       Auto-registers if you're a new user,and you can login again and again.
+       The user can select their pfp (profile picture) from six emojis.
+       The selected emoji shows up on the curve of the taskbar.
+       Logout button turns red when loged in already.
+       All credentials and profile data stored in localStorage of the browser.
 
-[All these apps are still under construction, So it will not perform its task properly, I am trying hard to do it asap]
+    📂Files
+       Displays all files saved from Nuclear IDE.
+       Open any file directly back into the IDE, by clicking "open in IDE"
+       Delete any file by clicking the delete button.
+       Shows a message if there are no files created.
 
-Centered popup window design:                                  
-  It has close and minimize icons                          
-    Close (✕)                    
-    Minimize (—)
+    🔴Searchy
+       Type any URL and load it inside the window itself.
+       Automatically adds "https:// "
+       Uses <iframe> So, Youtube.com, Google.com and other major sites may not load.
+       [Previously an AI that should run on hackclub API key, but it didn't work So I pivoted]
 
-Profile System:                     
-  Emoji-based profile picture selection, the selected profile emoji will be    displayed on the curve of the taskbar
+    ☢️Nuclear IDE
+       It is a code and text editor inside the OS.
+       "State saving" when the user switches apps, the content isn't lost.
+       Click save and enter a custum name, and the saved file can be access though "📂Files".
 
-Taskbar UI:               
-  A unique curved taskbar that uses emojis as icons with hover effect   
-  It has Three elements:   
-     1. verticaltaskbar            
-     2. the curve                     
-     3. horizontal taskbar 
-     
-     
-     
- ![alt text](photos/image-8.png)           
+    🎨Paint (advanced version of this app is under progress.)
+       Pixel art canvas where the user can draw in a 50x50 grid .
+         1. Draw
+         2. Erase
+         3. Clear everytihng.
+       Clear button is to reset the canvas.
 
-Digital Clock:                     
-  A real time clock at the top right corner, that displayes the exact time per region
-  It has a digital clock design with 'Orbital' font
-  
-  ![alt text](photos/image-4.png)
+    📟Data Logger
+       Data Logger is like a mini version of excel, where there are cells, grids, rows and columns.
+       The rows and columns are numbered, (A,B,C...) and (1,2,3....) 
+       Data can be entered in multiple cells.
 
-Visual Design:                        
- It uses a frosted glass design/vibe, with blur effects
+    🎮Games
+      Shows the list of all apps in grid format.
+      Accual games yet to be added.
 
- ![alt text](photos/image-6.png)
+    📻Music 
+      Shows a list of 10 songs, from which you can play from.
+      [I was able to play the songs locally but was not able to when I published it, I am working on solving this issue asap.]
 
-Storage of passcodes:              
-  Uses local browser Storage for the login details
-  
+    🧮Calculator:
+        A simple calculator app, shaped like a calculator.
+        Does the primary operations :
+          1. Addition
+          2. Subtraction
+          3. Multiplication
+          4. Division
+
+    📤Mail (Not yet added)
+        The user can type a e-mail address and write a message, and send it. 
+
+    ❓About:
+       Shows all the instructions for navigating the website.
+
+
+Visual Design
+
+        1. Frosted glass design/vibe throughout the website.
+        2. Blurred background overlay on most of the things.
+        3. Custom background image support.
+        4. Honk font for titles and headings.
+        5. Orbitron font for the clock.
+        6. Emoji based UI for taskbar and profile selection.
+
+
+Digital Clock
+
+        Real-time clock hours/minutes.
+        Shows correct time according to the region.
+        Orbitron font with red border and dark background for that digital clock feel.
+
+
+
 How to Use
-  1. Open the webpage
-  2. Click Login
-  3. Enter email and password
-  4. Choose a profile emoji
-  5. Start using apps from the taskbar
+
+Open the webpage
+Click Login at the bottom right.
+Enter your email and password.
+Pick a profile emoji.
+Click ENTER.
+Use apps from the taskbar.
+Click ▶ to expand the taskbar and see more apps.
+Click 📟 to open the data logger, (mini excel).
+Click 🎨 to paint in black and white.
+Click 🔴 to open browser and type (eg: hello.com).
+In Nuclear IDE, click Save to save your file with a name.
+Open Files to view, reopen, or delete saved files.
+Click Log Out (bottom right, red button) to end your session.
 
 
-Note: 
-   Most of the apps are under construction </>
-
-   Thank you </> Happy hacking [Made for Hack Club: The Game] By Siddharthan
+Note: Some apps are still not proper, please inform incase of insects espeacially bugs.
 
 
-
-   
+Thank you </> Happy hacking
+[Made for Hack Club: The Game]
+By Siddharthan.
