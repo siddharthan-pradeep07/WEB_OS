@@ -165,7 +165,10 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 26px;   
+    font-size: 26px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;  
 }
 
 .taskbar-vertical button:hover, .taskbar-horizontal button:hover,.taskbar-horizontal-extra button:hover
@@ -331,7 +334,7 @@
      <button onclick="openWindow('Paint', '🎨', '<iframe src=\'Apps/paint.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🎨</button>
      <button onclick="openWindow('Music', '📻', '<iframe src=\'Apps/musicapp.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">📻</button>
      <button onclick="openWindow('Terminal', '🧰', 'CONTROL!')">🧰</button>
-     <button class="extra-app" style="display:none" onclick="openWindow('Calculator', '🧮', '<iframe src=\'Apps/calculator.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🧮</button>
+     <button onclick="openWindow('Calculator', '🧮', '<iframe src=\'Apps/calculator.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🧮</button>
      <button class="extra-app" style="display:none" onclick="openWindow('Mail', '📤', 'send emails!')">📤</button>
      <button class="extra-app" style="display:none" onclick="openWindow('About', '❔', '<iframe src=\'Apps/about.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">❔</button>
  </div>
@@ -463,7 +466,7 @@ function toggletaskbar()
      {
         bar.classList.add('expanded');
         bar.classList.remove('visible');
-        extraapps.forEach(b => b.style.display = 'inline-flex');
+        extraapps.forEach(b => b.style.display = 'flex');
         btn.style.left = (112 + bar.offsetWidth) + 'px';
         btn.textContent = '<';
         btn.title = 'Hide apps';
