@@ -327,7 +327,7 @@
 
  <div class="taskbar-horizontal visible" id ="taskbar-horizontal">
      <button onclick="openWindow('Games', '🎮', '<iframe src=\'Apps/games.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🎮</button>
-     <button onclick="openWindow('Paint', '🎨', 'Paint here')">🎨</button>
+     <button onclick="openWindow('Paint', '🎨', '<iframe src=\'Apps/paint.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🎨</button>
      <button onclick="openWindow('Music', '📻', '<iframe src=\'Apps/musicapp.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">📻</button>
      <button onclick="openWindow('Terminal', '🧰', 'CONTROL!')">🧰</button>
      <button onclick="openWindow('Settings', '🧻', 'Note: Close the nuclear ide once a file is saved <br> login for the best experience <br> すべての人間は ')">🧻</button>
@@ -407,7 +407,7 @@ function openWindow(name, icon, content)
 
   document.getElementById('popup-title').textContent = icon + ' ' + name;
 
-  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files' || name === 'Music' || name === 'Calculator' || name === 'Games' || name === 'About')
+  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files' || name === 'Music' || name === 'Calculator' || name === 'Games' || name === 'About' || name === 'Paint')
    {
      document.getElementById('popup-content').innerHTML = windows[name];
    }
