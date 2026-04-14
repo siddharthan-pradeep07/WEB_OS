@@ -334,7 +334,7 @@
      <button onclick="openWindow('Games', '🎮', '<iframe src=\'Apps/games.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🎮</button>
      <button onclick="openWindow('Paint', '🎨', '<iframe src=\'Apps/paint.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🎨</button>
      <button onclick="openWindow('Music', '📻', '<iframe src=\'Apps/musicapp.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">📻</button>
-     <button onclick="openWindow('Terminal', '🧰', 'CONTROL!')">🧰</button>
+     <!-- button onclick="openWindow('Terminal', '🧰', 'CONTROL!')">🧰</button -->
      <button class="extra-app" style="display:none" onclick="openWindow('Calculator', '🧮', '<iframe src=\'Apps/calculator.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🧮</button>
      <button class="extra-app" style="display:none" onclick="openWindow('Mail', '📤', 'send emails!')">📤</button>
      <button class="extra-app" style="display:none" onclick="openWindow('About', '❓', '<iframe src=\'Apps/about.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">❓</button>
@@ -469,7 +469,7 @@ function toggletaskbar()
         bar.classList.remove('visible');
         extraapps.forEach(b => b.style.display = 'flex');
         btn.style.left = (112 + bar.offsetWidth) + 'px';
-        btn.textContent = '<';
+        btn.textContent = '◀';
         btn.title = 'Hide apps';
      }
     else
@@ -478,7 +478,7 @@ function toggletaskbar()
         bar.classList.add('visible');
         extraapps.forEach(b => b.style.display = 'none');
         btn.style.left = '';
-        btn.textContent = '>';
+        btn.textContent = '▶';
         btn.title = 'Show apps';
 
      }

@@ -4,45 +4,23 @@
         <title>Searchy</title>
     </head>
          <body>
-            <script src="../config.js"></script>
-            <h1>Searchy</h1>
+            <input id="url-input" type="text" placeholder="Enter a URL..." onkeydown="if(event.key==='Enter')browserGo()">
+            <button onclick="browserGo()">Search.</button>
 
+            <br>
+            <br>
 
-           <input id="67" type="text" placeholder="Text your curiosity">
-           <button onclick="ask()">Go</button>
-
-           <p id="ans">......</p>
-                
+            <iframe id="browser-frame" src="" style="width:100%; height:80vh; border:none; border-radius:5px;"></iframe>
             <script>
-                async function ask()
+                function browserGo()
                 {
-                    const question = document.getElementById('67').value;
-                    document.getElementById('ans').textContent = 'Analizing your curiosity...';
-
-                    const result = await fetch('https://ai.hackclub.com/proxy/v1/chat/completions',
-                    {
-                        method: 'POST',
-                        headers: 
-                          {
-                            'Content-Type': 'application/json',
-                            'Authorization': 'Bearer' + CONFIG.API_KEY
-                           },
-                            body: JSON.stringify({
-                            model: 'qwen/qwen3-32b',
-                            messages: [
-                                {
-                                    role: 'user',
-                                    content: question
-                                }
-                            ],
-                           }) 
-                    });
-
-                    const data = await result.json();
-                    console.log(data);
-                    document.getElementById('ans').textContent = data.choices[0].message.content;
-
+                    let url = document.getElementById('url-input').value.trim();
+                    if (!url) return;
+                    if (!url.startsWith('http://') && !url.startsWith('https://')) url = 'https://' + url;
+                    
+                    document.getElementById('browser-frame').src = url;
                 }
             </script>
-         </body>
+        </body>
+
 </html>
