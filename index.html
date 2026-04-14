@@ -121,6 +121,7 @@
     z-index:999;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0;
     gap:0;
     overflow: hidden;
@@ -464,7 +465,7 @@ function toggletaskbar()
      {
         bar.classList.add('expanded');
         bar.classList.remove('visible');
-        extraapps.forEach(b => b.style.display = 'flex');
+        extraapps.forEach(b => b.style.display = 'inline-flex');
         btn.style.left = (112 + bar.offsetWidth) + 'px';
         btn.textContent = '<';
         btn.title = 'Hide apps';
