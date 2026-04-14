@@ -31,7 +31,7 @@
             #grid
             {
                 display: grid;
-                grid-template-columns: repeat(10, 1fr);
+                grid-template-columns: repeat(50, 12fr);
                 border: 2px solid #333;
                 cursor: crosshair;
             }
@@ -72,7 +72,7 @@
 
             function paint(pixel)
             {
-                pixel.style.backround = mode === 'draw' ? 'black' : 'white';
+                pixel.style.background = mode === 'draw' ? 'black' : 'white';
         
             }
         </script>
