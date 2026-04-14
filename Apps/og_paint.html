@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Paint</title>
+        <style>
+            body
+            {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+                background: transparent;
+                font-family: sans-serif;
+            }
+
+            button
+            {
+                padding: 6px 14px;
+                border: 1.5px solid #59616991;
+                border-radius: 8px;
+                background: #ffffff63;
+                cursor: pointer;
+            }
+             
+            button:hover
+            {
+                background: #ffffff91;
+            }
+
+            #grid
+            {
+                display: grid;
+                grid-template-columns: repeat(50, 8px);
+                border: 2px solid #333;
+                cursor: crosshair;
+            }
+
+            .pixel
+            {
+                width: 8px;
+                height: 8px;
+                border: 0.5px solid #eeeeeeda;
+                background: #ffffff;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <button onclick="mode = 'draw'">Draw</button>
+            <button onclick="mode = 'erase'">Erase</button>
+            <button onclick="document.querySelectorAll('.pixel').forEach(pixel => pixel.style.background = '#ffffff')">Clear</button>
+        </div>
+
+        <div id="grid"></div>
+
+        <script>
+            let paiting = false;
+            let mode = 'draw';
+
+            for (let i = 0; i < 2500; i++)
+            {
+                const pixel = document.createElement('div');
+                pixel.classList.add('pixel');
+                pixel.addEventListener('mousedown', () => { paiting = true; paint(pixel);});
+                pixel.addEventListener('mouseover', () => { if (paiting) paint(pixel); });
+                document.getElementById('grid').appendChild(pixel);
+            }
+
+            document.addEventListener('mouseup', () => paiting = false);
+
+            function paint(pixel)
+            {
+                pixel.style.background = mode === 'draw' ? 'black' : 'white';
+        
+            }
+        </script>
+    </body>
+</html>
