@@ -15,7 +15,8 @@
                 display: flex;
                 flex-direction: column;
                 gap: 8px;
-                background: #ffffff;
+                background: #ffffff00;
+                border-radius: 10px;
             }
             #display
             {
@@ -24,7 +25,7 @@
                 text-align: right;
                 border: 2px solid #00000027;
                 border-radius: 10px;
-                background: #ffffff62;
+                background: #c78ce283;
             }
             .buttons
             {
@@ -36,14 +37,14 @@
             {
                 padding: 14px;
                 font-size: 16px;
-                border: 1.5px solid #5c4e4eab;
+                border: 1.5px solid #5c4e4e00;
                 border-radius: 10px;
-                background: #ffffff62;
+                background: #9b56d352;
                 cursor: pointer;
             }
             button:hover
             {
-                background: #ffffffc2;
+                background: #9d65d1ce;
             }
 
         </style>
@@ -70,7 +71,7 @@
                 <button onclick="appendNumber('.')">.</button>
                 <button onclick="appendNumber('0')">0</button>
                 <button onclick="chooseOperation('+')">+</button>
-                <button onclick="calculateResult()" style="background:#00ff002b; color:#000000c2;">=</button>
+                <button onclick="calculateResult()" style="background:#867fdbc4; color:#000000c2;">=</button>
             </div>
         </div>
 
