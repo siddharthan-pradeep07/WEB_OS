@@ -2,6 +2,7 @@ WEBOS:
   An OS that is programmed as a website — to be frank, it is like a mini operating system that runs entirely inside a browser. A user could just open the webpage and they can interact with apps, windows, and a desktop-like interface. No installation, no setup, just open and use.
 
 Features:
+
     Window System:
        Click an app to open a window interface.
        Open and then, minimize (—), and close (✕) controls in the top right corner.
