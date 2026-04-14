@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Logger</title>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+
+            body
+            {
+                background: transparent;
+                font-family:Arial, Helvetica, sans-serif;
+                padding: 10px;
+                overflow: auto;
+            }
+
+            table
+            {
+                border-collapse: collapse;
+            }
+
+            td
+            {
+               border: 1px solid #5e5a4bb6;
+               padding: 0;
+            }
+            
+            td input
+            {
+                width: 100px;
+                height: 30px;
+                border: none;
+                outline: none;
+                padding: 4px 8px;
+                font-size: 13px;
+                background: #ffffff67;
+                font-family:Arial, Helvetica, sans-serif;
+            }
+
+            td input:focus
+            {
+                background: #ffffff;
+            }
+
+            th
+            {
+                border: 1px solid #848d73b6;
+                width: 100px;
+                height: 30px;
+                background: #e9e3e381;
+                font-weight: bold;
+                font-family:Arial, Helvetica, sans-serif;   
+                font-size: 13px;
+                text-align: center;
+
+            }
+
+            .row-header
+            {
+                width: 40px;
+                min-width: 40px;
+                background:#e9e3e381;
+                font-weight: bold;
+                font-family:Arial, Helvetica, sans-serif;   
+                font-size: 13px;
+                text-align: center;
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        <table id="sheet"></table>
+
+
+        <script>
+            const rows = 20;
+            const cols = 10;
+            const table = document.getElementById('sheet');
+            const letters = ['','A','B','C','D','E','F','G','H','I','J'];
+            const header = document.createElement('tr');
+            header.innerHTML = '<th class="row-header"></th>';
+            for (let c = 1; c <= cols; c++)
+            {
+                header,innerHTML += '<th>' + letters[c] + '</th>';
+            }
+            table.appendChild(header);
+
+            for (let r = 1; r <= rows; r++)
+            {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td class="row-header">' + r + '</td>';
+                for (let c = 1; c <= cols; c++)
+                {
+                    const td = document.createElement('td');
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    td.appendChild(input);
+                    row.appendChild(td);
+                }
+                table.appendChild(row);
+            }
+        </script>
+    </body>
+</html>

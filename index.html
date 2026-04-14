@@ -315,7 +315,7 @@
       <button onclick="openWindow('Files', '📂', 'Files here')">📂</button>
       <button onclick="openWindow('Searchy', '🔴', '<iframe src=\'Apps/searchy.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🔴</button>
       <button onclick="openWindow('Nuclear IDE', '☢️', 'Nuclear IDE program here')">☢️</button>
-      <button onclick="openWindow('Data logger', '📟', 'Log data here')">📟</button>
+      <button onclick="openWindow('Data logger', '📟', '<iframe src=\'Apps/datalogger.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">📟</button>
   </div>
 
  <div class="taskbar-curve"></div>
@@ -331,8 +331,6 @@
      <button onclick="openWindow('Paint', '🎨', '<iframe src=\'Apps/paint.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🎨</button>
      <button onclick="openWindow('Music', '📻', '<iframe src=\'Apps/musicapp.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">📻</button>
      <button onclick="openWindow('Terminal', '🧰', 'CONTROL!')">🧰</button>
-     <button onclick="openWindow('Settings', '🧻', 'Note: Close the nuclear ide once a file is saved <br> login for the best experience <br> すべての人間は ')">🧻</button>
- 
      <button class="extra-app" style="display:none" onclick="openWindow('Calculator', '🧮', '<iframe src=\'Apps/calculator.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">🧮</button>
      <button class="extra-app" style="display:none" onclick="openWindow('Mail', '📤', 'send emails!')">📤</button>
      <button class="extra-app" style="display:none" onclick="openWindow('About', '❔', '<iframe src=\'Apps/about.html\' style=\'width:100%; height:100%; border:none; border-radius:5px;\'></iframe>')">❔</button>
@@ -377,7 +375,7 @@ function openWindow(name, icon, content)
   
   if (currentApp && currentApp !== name)
    {
-     document.getElementById('popup').classList.remove('open');
+     document.getElementById('popup').classList.remove('open'); 
    }
 
   currentApp = name;
@@ -408,7 +406,7 @@ function openWindow(name, icon, content)
 
   document.getElementById('popup-title').textContent = icon + ' ' + name;
 
-  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files' || name === 'Music' || name === 'Calculator' || name === 'Games' || name === 'About' || name === 'Paint')
+  if (name === 'Nuclear IDE' || name === 'Searchy' || name === 'Files' || name === 'Music' || name === 'Calculator' || name === 'Games' || name === 'About' || name === 'Paint' || name === 'Data logger')
    {
      document.getElementById('popup-content').innerHTML = windows[name];
    }
