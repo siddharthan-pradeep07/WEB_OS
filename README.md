@@ -116,5 +116,5 @@ Note: Some apps are still not proper, please inform incase of insects espeaciall
 
 
 Thank you </> Happy hacking
-[Made for Hack Club: The Game]
+[Made for Hack Club: The Game, but submitted for Beest.]
 By Siddharthan.
